@@ -16,6 +16,6 @@ public class HomePage {
     @FindBy(id = "logo")
     public WebElement logoYazisi;
 
-    @FindBy(className = "ft51BU2r")
-    public WebElement aramaKutusu;
+   // @FindBy(className = "ft51BU2r")
+    // public WebElement aramaKutusu;
 }
