@@ -28,12 +28,25 @@ public class SearchResultsPage {
     @FindBy(xpath = "//*[text()='MANGO']")
     public WebElement marka;
 
+    @FindBy(xpath = "//*[@class='prdct-desc-cntnr']")
+    public WebElement firstProductForMark;
+
+    @FindBy(xpath = "//*[text()='MANGO Kadın Omuz Çantası']")
+    public WebElement markaUrunClick;
+
+
     // sayfayı kaydır
     // @FindBy(className = "fltr-cntnr-ttl-area")
     //public WebElement filtreElementi;
+    @FindBy(xpath = "//*[text()='Fiyat']")
+    public WebElement fiyatFiltresi;
+
 
     @FindBy(xpath = "//*[text()='200 TL - 450 TL']")
-    public WebElement fiyatFiltresi;
+    public WebElement fiyatFiltresiSpecific;
+
+    @FindBy(xpath = "//*[@class='price-item discounted']")
+    public WebElement firstProductPrice;
 
 //sıralama locateleri
     //  @FindBy(className = "i-new-sort-icon search-sort-icon")
