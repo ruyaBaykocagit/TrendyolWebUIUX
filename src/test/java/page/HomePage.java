@@ -13,9 +13,16 @@ public class HomePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(id = "logo")
-    public WebElement logoYazisi;
 
-   // @FindBy(className = "ft51BU2r")
-    // public WebElement aramaKutusu;
+    @FindBy(xpath = "//img[@alt='Trendyol Türkçe']")
+    public WebElement trendyolTitleElement;
+
+
+    @FindBy(xpath = "//*[@class='vQI670rJ']")
+    public WebElement searchBox;
+
+
+    @FindBy(xpath = "//*[text()='Accept All Cookies']")
+    public WebElement cookiesAcceptButton;
+
 }

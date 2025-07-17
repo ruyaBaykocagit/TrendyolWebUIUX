@@ -12,10 +12,18 @@ public class SearchResultsPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
+    @FindBy(xpath = "//*[text()='Tüm Kategoriler']")
+    public WebElement tumKategoriler;
     // filtre locateleri
     @FindBy(xpath = "//*[text()='Omuz Çantası']")
     public WebElement kategori;
+
+    //ilk cıkan urune tıklar ilk cıkan urun locate butun alındı spesıfık olmasın dıye
+    @FindBy(xpath = "//*[@class='product-down']")
+    public WebElement firstProduct;
+
+    @FindBy(xpath = "//*[text()='Kadın Omuz Çantası']")
+    public WebElement firstProductDetail;
 
     @FindBy(xpath = "//*[text()='MANGO']")
     public WebElement marka;
@@ -38,9 +46,12 @@ public class SearchResultsPage {
     public WebElement enCokSatan;
 
     //liste kontrol locate
-    @FindBy(xpath = "//h2[contains(text(), 'sonuç listeleniyor')]")
+    @FindBy(xpath = "//h2[text()= ' araması için 100.000+ sonuç listeleniyor']")
     public WebElement sonucBasligi;
 
-    @FindBy(xpath = "//h2[contains(text(),'aramanız için ürün bulunamadı. Aşağıdakiler ilginizi çekebilir.')]")
+    @FindBy(xpath = "//h2[text()=' aramanız için ürün bulunamadı. Aşağıdakiler ilginizi çekebilir.']")
     public WebElement urunBulunamadiMesaji;
+
+
+
 }
