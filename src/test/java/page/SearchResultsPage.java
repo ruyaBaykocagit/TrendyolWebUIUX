@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-
 public class SearchResultsPage {
     WebDriver driver;
 
@@ -67,9 +65,6 @@ public class SearchResultsPage {
     @FindBy(xpath = "//h2[text()=' aramanız için ürün bulunamadı. Aşağıdakiler ilginizi çekebilir.']")
     public WebElement urunBulunamadiMesaji;
 
-    //urun artirma locate
-    @FindBy(xpath = "//div[contains(@class, 'product-down')]")
-    public List<WebElement> tumUrunler;
 
 
 }

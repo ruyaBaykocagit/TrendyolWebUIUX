@@ -3,7 +3,6 @@ package utilities;
 import driver.DriverManager;
 import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
-import org.junit.Assert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -66,17 +65,24 @@ public class ReusableMethods {
 
     }
 
-        // Sayfa kaynak kodu içinde verilen metnin geçtiğini doğrular.
-    public static void verifyTextExistsOnPage(String expectedText) {
-        String pageSource = DriverManager.getDriver().getPageSource();
-        Assert.assertTrue("Beklenen metin sayfa kaynağında bulunamadı: " + expectedText,
-                pageSource.contains(expectedText));
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
-
-
-
-
 
 
 

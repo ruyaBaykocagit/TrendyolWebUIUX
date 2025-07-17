@@ -50,13 +50,5 @@ public class AddToCartPage {
     @FindBy(xpath = "(//div[@class='_body_03c70b5 _large_34eb53c _left_b388a23 _align-left_def5d71'])[2]")
     public WebElement MbedenGomlek;
 
-    //elif
-    @FindBy(xpath = "//span[@class='add-to-cart-button-text stock-info']")
-    public WebElement sepeteEkleButon;
-
-    @FindBy(xpath = "//*[@id=\"envoy\"]/div/div/div/button[2]/span[3]")
-    public WebElement sepeteEklendiMesaji;
-
-
 
 }
