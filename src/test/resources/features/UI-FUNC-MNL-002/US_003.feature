@@ -1,5 +1,3 @@
-
-
 Feature:US_003 Bir kullanıcı olarak, arama kutusuna "çanta" yazarak sadece çanta ile ilgili ürünleri görmek istiyorum,
   böylece istediğim ürünlere hızlıca ulaşabilirim.
 
