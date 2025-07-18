@@ -1,9 +1,15 @@
 package page;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class AddToCartPage {
 
@@ -19,12 +25,6 @@ public class AddToCartPage {
 
     @FindBy(xpath = "//*[@class='selected-country-flag']")
     public WebElement fransaBayragi;
-
-    @FindBy(xpath = "//*[@class='country-selection-wrapper menu-item']")
-    public WebElement ulkeMenusu;
-
-    @FindBy(xpath = "//*[@class='country']")
-    public WebElement ulkeMenusu2;
 
     @FindBy(xpath = "//*[text()='France']")
     public WebElement fransaYazisi;
@@ -50,5 +50,78 @@ public class AddToCartPage {
     @FindBy(xpath = "(//div[@class='_body_03c70b5 _large_34eb53c _left_b388a23 _align-left_def5d71'])[2]")
     public WebElement MbedenGomlek;
 
+    @FindBy(xpath = "//*[text()='ÜRÜNÜN TÜM ÖZELLİKLERİ']")
+    public WebElement urunDetayi;
+
+    @FindBy(xpath = "//*[@class='summary-rating']")
+    public WebElement urunPuanlamasi;
+
+    @FindBy(xpath = "//*[text()='TÜM YORUMLARI GÖSTER']")
+    public WebElement urununYorumlari;
+
+
+
+
+
+    public void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public void yorumlariGoster(WebDriver driver) {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+            // Sayfanın sonuna kadar yavaş yavaş scroll yap
+            for (int i = 0; i < 4; i++) {
+                js.executeScript("window.scrollBy(0, 500);");
+            }
+
+            // Buton görünene kadar bekle
+            WebElement yorumButonu = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//button[contains(text(),'TÜM YORUMLARI GÖSTER')]")));
+
+            // Butona scroll yap
+            js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", yorumButonu);
+
+            yorumButonu.click(); // Yorumları göster
+            System.out.println("✅ Yorumlar açıldı.");
+
+        } catch (Exception e) {
+            System.out.println("❌ Yorum butonu bulunamadı: " + e.getMessage());
+        }
+    }
+    public void puanlariGoster(WebDriver driver) {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+            // Sayfanın sonuna kadar yavaş yavaş scroll yap
+            for (int i = 0; i < 6; i++) {
+                js.executeScript("window.scrollBy(0, 500);");
+            }
+
+            // Buton görünene kadar bekle
+            WebElement yorumButonu = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//*[@class='summary-rating']")));
+
+            // Butona scroll yap
+            js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});" );
+
+            yorumButonu.click(); // Yorumları göster
+            System.out.println("✅ Puanlar açıldı.");
+
+        } catch (Exception e) {
+            System.out.println("❌ Puanlar bulunamadı: " + e.getMessage());
+        }
+    }
 
 }
+
+
+
+
+
+
+
