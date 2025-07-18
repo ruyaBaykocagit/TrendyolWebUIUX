@@ -3,15 +3,18 @@ package utilities;
 import driver.DriverManager;
 import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.junit.Assert;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 
@@ -64,13 +67,33 @@ public class ReusableMethods {
 
 
     }
+         //Sayfa kaynak kodu içinde verilen metnin geçtiğini doğrular.
+
+    public static void verifyTextExistsOnPage(String expectedText) {
+        String pageSource = DriverManager.getDriver().getPageSource();
+        Assert.assertTrue("Beklenen metin sayfa kaynağında bulunamadı: " + expectedText,
+                pageSource.contains(expectedText));
+    }
 
 
+    public static void clickButtonByText(String buttonText) {
+        WebDriver driver = DriverManager.getDriver();
+        WebElement button = driver.findElement(By.xpath("//*[normalize-space(text())='" + buttonText + "']"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(button));
+        button.click();
+    }
 
 
-
-
-
+        //aratilan ürün listesindeki il ürüne tikla
+    public static void clickFirstVisibleProduct(List<WebElement> productList) {
+        // Ürün listesi boş mu kontrol et
+        Assert.assertFalse("Ürün listesi boş, tıklanacak ürün bulunamadı", productList.isEmpty());
+        WebElement firstProduct = productList.get(0);
+        Assert.assertTrue("İlk ürün görünmüyor", firstProduct.isDisplayed());
+        wait(2);
+        firstProduct.click();
+    }
 
 
 
