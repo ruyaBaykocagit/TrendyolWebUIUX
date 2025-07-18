@@ -12,6 +12,7 @@ public class SearchResultsPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
     @FindBy(xpath = "//*[text()='Tüm Kategoriler']")
     public WebElement tumKategoriler;
     // filtre locateleri
@@ -35,7 +36,7 @@ public class SearchResultsPage {
     public WebElement markaUrunClick;
 
 
-    // sayfayı kaydır
+    // sayfayı kaydır--gerek kalmadı
     // @FindBy(className = "fltr-cntnr-ttl-area")
     //public WebElement filtreElementi;
     @FindBy(xpath = "//*[text()='Fiyat']")
@@ -48,15 +49,35 @@ public class SearchResultsPage {
     @FindBy(xpath = "//*[@class='price-item discounted']")
     public WebElement firstProductPrice;
 
-//sıralama locateleri
+    //sıralama locateleri
     //  @FindBy(className = "i-new-sort-icon search-sort-icon")
     //public WebElement sıralamaButonu;
+    @FindBy(xpath = "//*[text()='Önerilen']")
+    public WebElement önerilen;
 
     @FindBy(xpath = "//*[text()='En düşük fiyat']")
     public WebElement enDüsükFiyat;
 
-    @FindBy(xpath = "//*[text()='En çok satan']")
+    @FindBy(xpath = "(//div[@class='price-item discounted'])[1]")
+    public WebElement enDüsükFiyatFirstProduct;
+
+    @FindBy(xpath = "(//div[@class='price-item discounted'])[2]")
+    public WebElement enDüsükFiyatSecondProduct;
+
+
+
+
+   // @FindBy(xpath = "//*[text()='En çok satan']")
+   // public WebElement enCokSatan;
+
+    @FindBy(xpath = "//span[@class='search-dropdown-text' and contains(text(),'En çok')]")
     public WebElement enCokSatan;
+
+
+    @FindBy(xpath = "//*[text()='En Çok Satan 1. Ürün']")
+    public WebElement enCokSatanKontrol;
+
+
 
     //liste kontrol locate
     @FindBy(xpath = "//h2[text()= ' araması için 100.000+ sonuç listeleniyor']")
@@ -64,7 +85,6 @@ public class SearchResultsPage {
 
     @FindBy(xpath = "//h2[text()=' aramanız için ürün bulunamadı. Aşağıdakiler ilginizi çekebilir.']")
     public WebElement urunBulunamadiMesaji;
-
 
 
 }
