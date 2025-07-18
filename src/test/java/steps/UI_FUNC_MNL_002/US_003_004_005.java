@@ -5,15 +5,17 @@ import driver.DriverManager;
 import io.cucumber.java.en.*;
 import io.qameta.allure.Allure;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import page.HomePage;
 import page.SearchResultsPage;
 import utilities.ReusableMethods;
 
+import java.time.Duration;
 import java.util.List;
 
 
@@ -133,6 +135,7 @@ public class US_003_004_005 {
         driver.switchTo().window(originalWindow); // Ana sekmeye dön
         logger.info("Ana pencereye geri dönüldü: {}", originalWindow);
     }
+
     //TC_002
     @And("Kullanıcı “Marka” filtresi altında yer alan “Mango” seçeneğini işaretler.")
     public void kullanıcıMarkaFiltresiAltındaYerAlanMangoSeçeneğiniIşaretler() {
@@ -175,6 +178,7 @@ public class US_003_004_005 {
         logger.info("Ana sekmeye geri dönüldü: {}", originalWindow);
 
     }
+
     //TC_003
     @And("Kullanıcı “Fiyat” filtresi altında yer alan “{int}{int} TL” seçeneğini işaretler.")
     public void kullanıcıFiyatFiltresiAltındaYerAlanTLSeçeneğiniIşaretler(int min, int max) {
@@ -189,6 +193,7 @@ public class US_003_004_005 {
         logger.info("{} - {} TL aralığı filtresi seçildi.", min, max);
 
     }
+
     @Then("Kullanıcı, filtre uygulandıktan sonra listelenen ürünlerin seçtigim filtrelere uygun olduğunu doğrular.")
     public void kullanıcıFiltreUygulandıktanSonraListelenenÜrünlerinSeçtigimFiltrelereUygunOlduğunuDoğrular() {
         Allure.step("Kullanıcı, ilk ürünün fiyatının 200 TL'den büyük olduğunu doğrular.");
@@ -229,6 +234,112 @@ public class US_003_004_005 {
         logger.info("İlk ürünün fiyatı {} TL ve filtreye uygundur.", fiyat);
     }
 
+
     //US_005-----------------------------------------------------------------------------------------------
     //TC_001
+    @Then("Kullanıcı sayfanın sağ \\(veya üst) kısmındaki filtreleme panelini görür.")
+    public void kullanıcıSayfanınSağVeyaÜstKısmındakiFiltrelemePaneliniGörür() {
+        Allure.step("Kullanıcı filtreleme panelinin görünür olduğunu kontrol eder.");
+        Assert.assertTrue(resultsPage.önerilen.isDisplayed());
+        logger.info("Filtreleme paneli görünür durumda.");
+
+        Allure.step("Kullanıcı 'Önerilen' filtresine tıklar.");
+        resultsPage.önerilen.click();
+        logger.info("'Önerilen' filtresine tıklandı.");
+    }
+
+    @When("Kullanıcı sıralamadan “En Düşük Fiyat” filtresi seçer.")
+    public void kullanıcıSıralamadanEnDüşükFiyatFiltresiSeçer() {
+        Allure.step("Kullanıcı sıralama filtresinden 'En Düşük Fiyat' seçeneğini seçer.");
+        resultsPage.enDüsükFiyat.click();
+        logger.info("'En Düşük Fiyat' filtresi seçildi.");
+        ReusableMethods.wait(1);
+
+    }
+
+    @Then("Kullanıcı, en düşük fiyat filtresi uygulandıktan sonra listelenen ürünlerin seçtigi filtrelere uygun olduğunu doğrular")
+    public void kullanıcıEnDüşükFiyatFiltresiUygulandıktanSonraListelenenÜrünlerinSeçtigiFiltrelereUygunOlduğunuDoğrular() {
+        Allure.step("En düşük fiyat filtresi sonrası ürünlerin fiyat sıralaması ve filtre uyumluluğu kontrol ediliyor.");
+        String fiyatText1 = resultsPage.enDüsükFiyatFirstProduct.getText().replace(",", ".").replaceAll("[^\\d.]", "");
+        String fiyatText2 = resultsPage.enDüsükFiyatSecondProduct.getText().replace(",", ".").replaceAll("[^\\d.]", "");
+
+        double price1 = Double.parseDouble(fiyatText1);
+        double price2 = Double.parseDouble(fiyatText2);
+        logger.info("İlk ürün fiyatı: " + price1);
+        logger.info("İkinci ürün fiyatı: " + price2);
+
+        Allure.step("İlk ürün fiyatı: " + price1 + ", İkinci ürün fiyatı: " + price2);
+
+        System.out.println("İlk ürün fiyatı: " + price1);
+        System.out.println("İkinci ürün fiyatı: " + price2);
+
+        Assert.assertTrue("Fiyat sıralaması hatalı! İlk ürün ikinci üründen daha pahalı veya eşit.", price1 < price2);
+        logger.info("Fiyat sıralaması doğrulandı: İlk ürün fiyatı daha düşük.");
+    }
+
+
+    //TC_002
+
+    @When("Kullanıcı sıralamadan“En Çok Satan” filtresi seçer.")
+    public void kullanıcıSıralamadanEnÇokSatanFiltresiSeçer() {
+        Allure.step("Kullanıcı sıralama filtresinden 'En Çok Satan' seçeneğini seçer.");
+        Actions actions = new Actions(driver);
+        ReusableMethods.wait(2);
+        resultsPage.önerilen.click();
+        logger.info("'Önerilen' filtresine tıklandı.");
+        ReusableMethods.wait(3);
+        resultsPage.önerilen.click();
+        ReusableMethods.wait(3);
+        actions.moveToElement(resultsPage.enCokSatan).click().perform();
+        logger.info("'En Çok Satan' filtresine tıklandı.");
+
+    }
+
+    @Then("Kullanıcı, en cok satan filtre uygulandıktan sonra listelenen ürünlerin seçtigim filtrelere uygun olduğunu doğrular.")
+    public void kullanıcıEnCokSatanFiltreUygulandıktanSonraListelenenÜrünlerinSeçtigimFiltrelereUygunOlduğunuDoğrular() {
+        Allure.step("En çok satan filtresi uygulandıktan sonra ürünlerin uygunluğu kontrol ediliyor.");
+        ReusableMethods.wait(2);
+        Assert.assertTrue(resultsPage.enCokSatanKontrol.isDisplayed());
+        logger.info("En çok satan filtresi sonrası uygunluk doğrulandı.");
+    }
+
+    //TC_003
+
+    @Then("İlgili filtreler uygulandıktan sonra listelenen ürünlerin seçtigim filtrelere uygun olduğunu doğrular.")
+    public void i̇lgiliFiltrelerUygulandıktanSonraListelenenÜrünlerinSeçtigimFiltrelereUygunOlduğunuDoğrular() {
+        Allure.step("İlgili filtreler uygulandıktan sonra ürünlerin fiyat aralığı ve sıralaması kontrol ediliyor.");
+        int minFiyat = 200;
+        int maxFiyat = 450;
+
+        List<WebElement> fiyatElementleri = driver.findElements(By.cssSelector(".product-price"));
+
+        // Önceki fiyatı tutmak için değişken
+        int oncekiFiyat = -1; // ilk ürün için başlangıç değeri
+
+        for (WebElement fiyatEl : fiyatElementleri) {
+            String fiyatText = fiyatEl.getText().replaceAll("[^0-9]", "");
+            if (fiyatText.isEmpty()) continue;
+            int fiyat = Integer.parseInt(fiyatText);
+            Allure.step("Ürün fiyatı kontrol ediliyor: " + fiyat);
+            logger.info("Ürün fiyatı: " + fiyat);
+
+            // Fiyat aralığında mı?
+            Assert.assertTrue("Ürün fiyatı filtre aralığında değil: " + fiyat,
+                    fiyat >= minFiyat && fiyat <= maxFiyat);
+
+            // Sıralama kontrolü: önceki fiyat küçük veya eşit olmalı
+            if (oncekiFiyat != -1) { // ilk ürün değilse kontrol et
+                Assert.assertTrue("Fiyat sıralaması hatalı! " + oncekiFiyat + " > " + fiyat,
+                        oncekiFiyat <= fiyat);
+            }
+
+            // oncekiFiyat'ı güncelle
+            oncekiFiyat = fiyat;
+        }
+
+        logger.info("Tüm ürünler filtrelere uygun ve doğru sıralamada.");
+        Allure.step("Tüm ürünlerin filtrelere uygunluğu ve sıralaması doğrulandı.");
+    }
+
+
 }
