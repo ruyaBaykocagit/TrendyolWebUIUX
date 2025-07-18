@@ -27,4 +27,4 @@ Feature:US_006 Bir kullanıcı olarak, istedigim urune tiklayip resmini, fiyatin
     Then Kullanıcı istedigi herhangi bir urunu secer ve uzerine tıklar
     And Kullanici istedigi urunun bedenini gorur
     Then Kullanici M bedeni gorur ve tiklar
-    Then Browser kapatılır
+
