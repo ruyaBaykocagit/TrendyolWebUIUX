@@ -5,11 +5,17 @@ import io.cucumber.java.en.*;
 import io.qameta.allure.Allure;
 import org.apache.xmlbeans.impl.xb.xsdschema.All;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import page.AddToCartPage;
+import utilities.ReusableMethods;
+
+import java.time.Duration;
 
 public class US_006_007_008 {
 
@@ -97,5 +103,33 @@ public class US_006_007_008 {
         Assert.assertTrue(addToCartPage.urunPuanlamasi.isDisplayed());
         Allure.step("Puanlar goruldu");
         logger.info("Puanlar goruldu");
+    }
+
+    @And("Kullanici  sepete ekle butonunu gorur ve tiklar")
+    public void kullaniciSepeteEkleButonunuGorurVeTiklar() {
+
+        addToCartPage.anladımButonu.click();
+
+        Assert.assertTrue(addToCartPage.sepeteEkleButonu.isDisplayed());
+        addToCartPage.sepeteEkleButonu.click();
+        Allure.step("Sepete ekle butonu goruldu ve tiklandi");
+        logger.info("Sepete ekle butonu goruldu ve tiklandi");
+    }
+
+    @And("Kullanici sepete git butonunu gorur")
+    public void kullaniciSepeteGitButonunuGorur() {
+        ReusableMethods.wait(2);
+        Assert.assertTrue(addToCartPage.sepeteGitButonu.isDisplayed());
+        Allure.step("Sepete git butonu goruldu");
+        logger.info("Sepete git butonu goruldu");
+
+    }
+
+    @And("Kullanici sectigi urunu basariyla sepete ekler")
+    public void kullaniciSectigiUrunuBasariylaSepeteEkler() {
+
+        Assert.assertTrue(addToCartPage.silButonu.isDisplayed());
+        Allure.step("Urun sepete eklendi");
+        logger.info("Urun sepete eklendi");
     }
 }

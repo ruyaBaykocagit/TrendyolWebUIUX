@@ -59,7 +59,17 @@ public class AddToCartPage {
     @FindBy(xpath = "//*[text()='TÜM YORUMLARI GÖSTER']")
     public WebElement urununYorumlari;
 
+    @FindBy(xpath = "//*[@class='add-to-cart-button-text']")
+    public WebElement sepeteEkleButonu;
 
+    @FindBy(xpath = "//*[text()='Sepete Git']")
+    public WebElement sepeteGitButonu;
+
+    @FindBy(xpath = "//*[@class='trash-icon']")
+    public WebElement silButonu;
+
+    @FindBy(xpath = "//*[text()='Anladım']")
+    public WebElement anladımButonu;
 
 
 
