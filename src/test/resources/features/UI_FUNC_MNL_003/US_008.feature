@@ -19,7 +19,7 @@ Feature:US_008 Bir kullanıcı olarak, istedigim urune tiklayip sepete eklemek i
     And Kullanici  sepete ekle butonunu gorur ve tiklar
     And Kullanici sepete git butonunu gorur
 
-
+  @83
   Scenario: TC_003 Kullanıcı, istedigi urune tiklayinca o urunun bedenini gorebilmelidir
     Given Kullanıcı URL ile siteye giris yapar
     And Kullanici cookiesleri kabul eder
