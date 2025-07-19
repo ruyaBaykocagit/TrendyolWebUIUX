@@ -63,19 +63,13 @@ public class US_006_007_008 {
 
     }
 
-    @Then("Kullanici istedigi urunun bedenini gorur")
-    public void kullanici_istedigi_urunun_bedenini_gorur() {
-        Assert.assertTrue(addToCartPage.bedenGomlek.isDisplayed());
+
+    @And("Kullanici simdi al butonunu gorur")
+    public void kullaniciSimdiAlButonunuGorur() {
+        Assert.assertTrue(addToCartPage.simdiAlButonu.isDisplayed());
+        addToCartPage.anladımButonu.click();
         Allure.step("Beden goruldu");
         logger.info("Beden goruldu");
-
-    }
-
-    @Then("Kullanici M bedeni gorur ve tiklar")
-    public void kullanici_m_bedeni_gorur_ve_tiklar() {
-        Assert.assertTrue(addToCartPage.MbedenGomlek.isDisplayed());
-        Allure.step("M bedeni goruldu");
-        logger.info("M bedeni goruldu");
 
     }
 
@@ -132,4 +126,5 @@ public class US_006_007_008 {
         Allure.step("Urun sepete eklendi");
         logger.info("Urun sepete eklendi");
     }
+
 }

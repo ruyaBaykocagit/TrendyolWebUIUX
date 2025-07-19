@@ -47,8 +47,8 @@ public class AddToCartPage {
     @FindBy(xpath = "(//div[@class='react-transform-component transform-component-module_content__FBWxo '])[1]")
     public WebElement resimGomlek;
 
-    @FindBy(xpath = "(//div[@class='_body_03c70b5 _large_34eb53c _left_b388a23 _align-left_def5d71'])[2]")
-    public WebElement MbedenGomlek;
+    @FindBy(xpath = "//*[text()='Şimdi Al']")
+    public WebElement simdiAlButonu;
 
     @FindBy(xpath = "//*[text()='ÜRÜNÜN TÜM ÖZELLİKLERİ']")
     public WebElement urunDetayi;
