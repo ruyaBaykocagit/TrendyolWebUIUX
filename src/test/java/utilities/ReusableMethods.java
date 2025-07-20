@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -85,7 +86,7 @@ public class ReusableMethods {
     }
 
 
-        //aratilan ürün listesindeki il ürüne tikla
+        //aratilan ürün listesindeki ilk ürüne tikla
     public static void clickFirstVisibleProduct(List<WebElement> productList) {
         // Ürün listesi boş mu kontrol et
         Assert.assertFalse("Ürün listesi boş, tıklanacak ürün bulunamadı", productList.isEmpty());
@@ -95,7 +96,12 @@ public class ReusableMethods {
         firstProduct.click();
     }
 
-
+    //------------------yeni sekme son handle
+    public static void switchToLastWindow() {
+        WebDriver driver = DriverManager.getDriver();
+        List<String> windowList = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(windowList.get(windowList.size() - 1));
+    }
 
 
 
