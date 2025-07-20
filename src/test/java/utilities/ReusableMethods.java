@@ -11,14 +11,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-
-
+import java.util.Locale;
 
 
 public class ReusableMethods {
@@ -103,6 +103,20 @@ public class ReusableMethods {
         driver.switchTo().window(windowList.get(windowList.size() - 1));
     }
 
+        //-------------fiyat karsilastirma
+    public static double parsePriceStringToDouble(String fiyat) {
+        if (fiyat == null || fiyat.isEmpty()) {
+            throw new IllegalArgumentException("Fiyat string'i boş olamaz");
+        }
+        try {
+            // "2.582,88 TL" → 2582.88
+            String temizFiyat = fiyat.replaceAll("[^\\d,\\.]", "").trim();
+            NumberFormat format = NumberFormat.getInstance(new Locale("tr", "TR"));
+            return format.parse(temizFiyat).doubleValue();
+        } catch (ParseException e) {
+            throw new RuntimeException("Fiyat parse edilemedi: " + fiyat, e);
+        }
+    }
 
 
 

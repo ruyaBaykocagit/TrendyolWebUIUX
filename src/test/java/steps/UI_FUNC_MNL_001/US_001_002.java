@@ -13,6 +13,10 @@ import page.HomePage;
 import page.ShoppingCartPage;
 import utilities.ReusableMethods;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+
 public class US_001_002 {
     Logger logger = LoggerFactory.getLogger(getClass());
     HomePage homePage=new HomePage(DriverManager.getDriver());
@@ -120,27 +124,55 @@ public class US_001_002 {
         logger.info("Ürün artırıldıktan sonra adet: " + sonrakiAdet);
         logger.info("Ürün artırıldıktan sonra fiyat: " + sonrakiFiyat);
 
-        Assert.assertTrue("Ürün adedi artmadı!", sonrakiAdet > oncekiAdet);
-        Assert.assertTrue("Ürün fiyatı artmadı!", sonrakiFiyat > oncekiFiyat);
+        Assert.assertTrue("Ürün adedi artmadı", sonrakiAdet > oncekiAdet);
+        Assert.assertTrue("Ürün fiyatı artmadı", sonrakiFiyat > oncekiFiyat);
 
         logger.info("Kullanıcı ürün adedini artırdığında fiyatın güncellendiği başarıyla doğrulandı.");
 
-
     }
-
 
     @Then("Sepetten urun cıkarmak ici Sil ikonunu goruntulendıgını dogrular")
     public void sepetten_urun_cıkarmak_ici_sil_ikonunu_goruntulendıgını_dogrular() {
+        Assert.assertTrue(shoppingCartPage.urunSilmeIkonu.isDisplayed());
+        logger.info("Sepetten urun cıkarmak icin Sil ikonu goruntulendi.");
 
     }
 
     @Then("Ziyaretci ekledigi urunu sepetten siler ve silindigini dogrular")
     public void ziyaretci_ekledigi_urunu_sepetten_siler_ve_silindigini_dogrular() {
+        shoppingCartPage.urunSilmeIkonu.click();
+        logger.info("Sepetten urun cıkarmak icin silme ikonuna tikladi.");
+        Assert.assertTrue(shoppingCartPage.succesMesaji.isDisplayed());
+        logger.info("Sepetten urun basariyla silindi.");
+        ReusableMethods.wait(1);
 
     }
 
     @Then("Ziyaretci urunu sildiginde Siparis Ozeti kismindaki tutarin guncellendigini dogrular")
     public void ziyaretci_urunu_sildiginde_siparis_ozeti_kismindaki_tutarin_guncellendigini_dogrular() {
+        String toplamOnceString =shoppingCartPage.urunToplamTutar.getAttribute("title");
+        if (toplamOnceString == null || toplamOnceString.isEmpty()) {
+            toplamOnceString = shoppingCartPage.urunToplamTutar.getText();
+        }
+        double toplamOnce = ReusableMethods.parsePriceStringToDouble(toplamOnceString);
+        logger.info("Ürün silinmeden önce toplam tutar: {}", toplamOnce);
+
+        shoppingCartPage.urunSilmeIkonu.click();
+        ReusableMethods.wait(2);
+
+        String toplamSonraString = shoppingCartPage.urunToplamTutar.getAttribute("title");
+        if (toplamSonraString == null || toplamSonraString.isEmpty()) {
+            toplamSonraString = shoppingCartPage.urunToplamTutar.getText();
+        }
+        double toplamSonra = ReusableMethods.parsePriceStringToDouble(toplamSonraString);
+        logger.info("Ürün silindikten sonra toplam tutar: {}", toplamSonra);
+
+        Assert.assertTrue("Silme sonrası toplam tutar aynı kaldı veya artmış görünüyor!",
+                toplamSonra < toplamOnce);
+    }
+
+
+
 
     }
 
@@ -150,4 +182,4 @@ public class US_001_002 {
 
 
 
-}
+

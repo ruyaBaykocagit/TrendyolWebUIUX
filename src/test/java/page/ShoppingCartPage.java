@@ -59,7 +59,12 @@ public class ShoppingCartPage {
     public WebElement toplamFiyat;
 
     @FindBy(xpath = "//button[@aria-label='Ürünü sepetten çıkartma']")
-    public WebElement urunSilmeİkonu;
+    public WebElement urunSilmeIkonu;
+
+    @FindBy(xpath = "//*[@class='pb-summary-total-price discount-active']")
+    public WebElement urunToplamTutar;
+
+
 
 
 }

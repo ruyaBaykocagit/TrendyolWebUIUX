@@ -20,5 +20,5 @@ Feature:US_002 Bir ziyaretçi olarak, istemediğim bir ürünü sepetimden sileb
 
   Scenario: TC_05  Urun silindiginde toplam tutar otomatik(sayfa yenilenmeden) güncellenmesinin test edilmesi
     Given Ziyaretci urunun kontrolu icin Sepetim'e e gider
-    Then Ziyaretci ekledigi urunu sepetten siler ve silindigini dogrular
+    #Then Ziyaretci ekledigi urunu sepetten siler ve silindigini dogrular
     Then Ziyaretci urunu sildiginde Siparis Ozeti kismindaki tutarin guncellendigini dogrular
