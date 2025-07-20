@@ -62,5 +62,4 @@ public class ShoppingCartPage {
     public WebElement urunSilmeİkonu;
 
 
-
 }

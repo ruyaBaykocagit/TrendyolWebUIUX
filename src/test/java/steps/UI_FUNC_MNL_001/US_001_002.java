@@ -13,10 +13,6 @@ import page.HomePage;
 import page.ShoppingCartPage;
 import utilities.ReusableMethods;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class US_001_002 {
     Logger logger = LoggerFactory.getLogger(getClass());
     HomePage homePage=new HomePage(DriverManager.getDriver());
