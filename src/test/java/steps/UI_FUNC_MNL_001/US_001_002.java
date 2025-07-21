@@ -167,9 +167,10 @@ public class US_001_002 {
         double toplamSonra = ReusableMethods.parsePriceStringToDouble(toplamSonraString);
         logger.info("Ürün silindikten sonra toplam tutar: {}", toplamSonra);
 
-        Assert.assertTrue("Silme sonrası toplam tutar aynı kaldı veya artmış görünüyor!",
+        Assert.assertTrue("Silme sonrası toplam tutar aynı kaldı veya artmış görünüyor",
                 toplamSonra < toplamOnce);
     }
+
 
 
 
