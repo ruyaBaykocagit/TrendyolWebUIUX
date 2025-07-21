@@ -5,6 +5,7 @@ import driver.DriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.qameta.allure.Allure;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.slf4j.Logger;
@@ -28,12 +29,14 @@ public class US_001_002 {
     public void ziyaretci_verilen_url_ile_siteye_gider() {
         driver.get(ConfigReader.getProperty("url"));
         logger.info("Ziyaretçi şu URL'e gitti: {}", "url");
+        Allure.step("Ziyaretçi şu URL'e gitti: {}\", \"url\"");
         ReusableMethods.wait(1);
     }
     @Then("Ziyareci siteye giris sagladigini dogrular")
     public void ziyareci_siteye_giris_sagladigini_dogrular() {
         Assert.assertTrue(homePage.trendyolTitleElement.isDisplayed());
         logger.info("Anasayfa basligi goruntulendi.");
+        Allure.step("Anasayfa basligi goruntuleniyor.");
     }
     //tc02
     @When("Acilan reklamda kategoriyi secer")
@@ -41,6 +44,7 @@ public class US_001_002 {
         ReusableMethods.wait(1);
         shoppingCartPage.poupopReklam2.click();
         logger.info("Ziyaretci kategori secimi yapti.");
+        Allure.step("Ziyaretçi kategori secimini yapiyor.");
         ReusableMethods.wait(1);
 
     }
@@ -49,6 +53,7 @@ public class US_001_002 {
         homePage.searchBox.click();
         homePage.searchBox.sendKeys(urun + Keys.ENTER);
         logger.info("Ziyaretci arama kutusuna tikaladi " + urun + "yazip aratti: {}" , urun);
+        Allure.step("Ziyaretçi arama kutusuna"+  urun + "yazıp aratıyor.");
         ReusableMethods.wait(1);
     }
 
@@ -56,6 +61,7 @@ public class US_001_002 {
     public void ziyaretci_urunun_gorunurlugunu_dogrular_ve_urun_uzerine_tiklar() {
         ReusableMethods.clickFirstVisibleProduct(shoppingCartPage.tumUrunler);
         logger.info("Ziyaretci urunun gorunurlugunu dogruladi ve uzerine tikladi.");
+        Allure.step("Ziyaretci urunun gorunurlugunu dogrulayip uzerine tikliyor.");
         ReusableMethods.wait(1);
 
     }
@@ -65,6 +71,7 @@ public class US_001_002 {
         ReusableMethods.wait(2);
         shoppingCartPage.onboardingbutton.click();
         logger.info("Acilan onboarding butonuna tikladi: {}" , buttonText);
+        Allure.step("Ziyaretçi acilan"+ buttonText + "oboarding butonununa tikliyor.");
 
     }
 
@@ -74,12 +81,15 @@ public class US_001_002 {
         ReusableMethods.wait(1);
         ReusableMethods.verifyTextExistsOnPage(mesaj);
         logger.info("Sepete ekle butonuna tikladi ve " + mesaj + "yazisini goruntuledi: {}" , mesaj);
+        Allure.step("Sepete ekle butonuna tikladi ve " + mesaj + "yazisini goruntuluyor.");
 
     }
     //tc03
     @When("Ziyaretci urunun kontrolu icin Sepetim'e e gider")
     public void ziyaretci_urunun_kontrolu_icin_sepetim_e_e_gider() {
         shoppingCartPage.sepetimButton.click();
+        logger.info("Ziyaretci urunun kontrolu icin Sepetim'e tikladi. ");
+        Allure.step("Ziyaretci urunun kontrolu icin Sepetim'e tikliyor.");
         ReusableMethods.wait(1);
     }
 
@@ -100,6 +110,8 @@ public class US_001_002 {
     @Then("Sepet başarıyla güncellendi yazisini goruntuler")
     public void sepet_başarıyla_güncellendi_yazisini_goruntuler() {
         shoppingCartPage.succesMesaji.isDisplayed();
+        logger.info("Sepet başarıyla güncellendi yazisini goruntulendi.");
+        Allure.step("Sepet başarıyla güncellendi yazisi goruntuleniyor.");
         ReusableMethods.wait(1);
     }
 
@@ -112,7 +124,9 @@ public class US_001_002 {
         double oncekiFiyat = Double.parseDouble(fiyatMetniOnce.replace(",", "."));
 
         logger.info("Ürün artırılmadan önce adet: " + oncekiAdet);
+        Allure.step("Ürün artırılmadan önce adet:" + oncekiAdet );
         logger.info("Ürün artırılmadan önce fiyat: " + oncekiFiyat);
+        Allure.step(" Ürün artırılmadan önce fiyat: " + oncekiFiyat);
 
         shoppingCartPage.urunArtirmaButton.click();
         ReusableMethods.wait(2);
@@ -122,12 +136,15 @@ public class US_001_002 {
         double sonrakiFiyat = Double.parseDouble(fiyatMetniSonra.replace(",", "."));
 
         logger.info("Ürün artırıldıktan sonra adet: " + sonrakiAdet);
+        Allure.step("Ürün artırıldıktan sonra adet: " + sonrakiAdet );
         logger.info("Ürün artırıldıktan sonra fiyat: " + sonrakiFiyat);
+        Allure.step("\"Ürün artırıldıktan sonra adet: " + sonrakiFiyat);
 
         Assert.assertTrue("Ürün adedi artmadı", sonrakiAdet > oncekiAdet);
         Assert.assertTrue("Ürün fiyatı artmadı", sonrakiFiyat > oncekiFiyat);
 
         logger.info("Kullanıcı ürün adedini artırdığında fiyatın güncellendiği başarıyla doğrulandı.");
+        Allure.step("Kullanıcı ürün adedini artırdığında fiyatın güncellendiği başarıyla doğrulaNİYOR.");
 
     }
 
@@ -135,6 +152,7 @@ public class US_001_002 {
     public void sepetten_urun_cıkarmak_ici_sil_ikonunu_goruntulendıgını_dogrular() {
         Assert.assertTrue(shoppingCartPage.urunSilmeIkonu.isDisplayed());
         logger.info("Sepetten urun cıkarmak icin Sil ikonu goruntulendi.");
+        Allure.step("Sepetten urun cıkarmak icin Sil ikonu goruntuleniyor.");
 
     }
 
@@ -142,8 +160,10 @@ public class US_001_002 {
     public void ziyaretci_ekledigi_urunu_sepetten_siler_ve_silindigini_dogrular() {
         shoppingCartPage.urunSilmeIkonu.click();
         logger.info("Sepetten urun cıkarmak icin silme ikonuna tikladi.");
+        Allure.step("Sepetten urun cıkarmak icin silme ikonuna tiklaniyor.");
         Assert.assertTrue(shoppingCartPage.succesMesaji.isDisplayed());
         logger.info("Sepetten urun basariyla silindi.");
+        Allure.step("Sepetten urun basariyla siliniyor.");
         ReusableMethods.wait(1);
 
     }
@@ -156,6 +176,7 @@ public class US_001_002 {
         }
         double toplamOnce = ReusableMethods.parsePriceStringToDouble(toplamOnceString);
         logger.info("Ürün silinmeden önce toplam tutar: {}", toplamOnce);
+        Allure.step("Ürün silinmeden önce toplam tutar: {}\", toplamOnce");
 
         shoppingCartPage.urunSilmeIkonu.click();
         ReusableMethods.wait(2);
@@ -166,6 +187,7 @@ public class US_001_002 {
         }
         double toplamSonra = ReusableMethods.parsePriceStringToDouble(toplamSonraString);
         logger.info("Ürün silindikten sonra toplam tutar: {}", toplamSonra);
+        Allure.step("Ürün silindikten sonra toplam tutar: {}\", toplamSonra");
 
         Assert.assertTrue("Silme sonrası toplam tutar aynı kaldı veya artmış görünüyor",
                 toplamSonra < toplamOnce);
