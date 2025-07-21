@@ -118,8 +118,6 @@ allure serve target/allure-results
 | Yelda Akbulut      | QA Engineer  | — |
 | Rüya Z.Ç. Baykoca  | QA Engineer  |linkedin.com/in/rüya-zeliha-çelik-baykoca |
 
----
 
-## 📬 Contact
 
 
