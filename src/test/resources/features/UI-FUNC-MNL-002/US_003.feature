@@ -21,3 +21,4 @@ Feature:US_003 Bir kullanıcı olarak, arama kutusuna "çanta" yazarak sadece ç
     When Kullanıcı arama kutusuna "Uçan Süpürgeli Çanta" yazar
     Then Kullanıcı ilgili uyarı yazısını gördügünü dogrular
     And  Kullanıcı anasayfaya geri doner
+
