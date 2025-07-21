@@ -22,3 +22,4 @@ Feature:US_003 Bir kullanıcı olarak, arama kutusuna "çanta" yazarak sadece ç
     Then Kullanıcı ilgili uyarı yazısını gördügünü dogrular
     And  Kullanıcı anasayfaya geri doner
 
+
