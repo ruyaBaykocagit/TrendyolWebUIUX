@@ -126,5 +126,4 @@ public class US_006_007_008 {
         Allure.step("Urun sepete eklendi");
         logger.info("Urun sepete eklendi");
     }
-
 }
