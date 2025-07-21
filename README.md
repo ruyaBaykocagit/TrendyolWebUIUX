@@ -113,8 +113,8 @@ allure serve target/allure-results
 ## 👩‍💻 Team Members
 
 | Name               | Role         | LinkedIn |
-|--------------------|--------------|---------|
-| Elif D. Kavlak     | QA Engineer  | — |
+|--------------------|--------------|--------|
+| Elif D. Kavlak     | QA Engineer  |linkedin.com/in/elif-demirci-kavlak |
 | Yelda Akbulut      | QA Engineer  |linkedin.com/in/yelda-akbulut|
 | Rüya Z.Ç. Baykoca  | QA Engineer  |linkedin.com/in/rüya-zeliha-çelik-baykoca |
 
