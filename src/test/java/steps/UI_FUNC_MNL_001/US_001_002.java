@@ -50,6 +50,7 @@ public class US_001_002 {
     }
     @When("Ziyaretci arama kutusuna tiklar , {string} yazar ve aratır")
     public void ziyaretci_arama_kutusuna_tiklar_yazar_ve_aratır(String urun) {
+        ReusableMethods.wait(1);
         homePage.searchBox.click();
         homePage.searchBox.sendKeys(urun + Keys.ENTER);
         logger.info("Ziyaretci arama kutusuna tikaladi " + urun + "yazip aratti: {}" , urun);
@@ -77,8 +78,9 @@ public class US_001_002 {
 
     @Then("Ziyaretci sepete ekle butonuna tiklar ve {string} yazisini görerek dogrular")
     public void ziyaretci_sepete_ekle_butonuna_tiklar_ve_yazisini_görerek_dogrular(String mesaj) {
+        ReusableMethods.wait(2);
         shoppingCartPage.sepeteEkleButon.click();
-        ReusableMethods.wait(1);
+        ReusableMethods.wait(2);
         ReusableMethods.verifyTextExistsOnPage(mesaj);
         logger.info("Sepete ekle butonuna tikladi ve " + mesaj + "yazisini goruntuledi: {}" , mesaj);
         Allure.step("Sepete ekle butonuna tikladi ve " + mesaj + "yazisini goruntuluyor.");
@@ -87,14 +89,16 @@ public class US_001_002 {
     //tc03
     @When("Ziyaretci urunun kontrolu icin Sepetim'e e gider")
     public void ziyaretci_urunun_kontrolu_icin_sepetim_e_e_gider() {
+        ReusableMethods.wait(1);
         shoppingCartPage.sepetimButton.click();
         logger.info("Ziyaretci urunun kontrolu icin Sepetim'e tikladi. ");
         Allure.step("Ziyaretci urunun kontrolu icin Sepetim'e tikliyor.");
-        ReusableMethods.wait(1);
+        ReusableMethods.wait(2);
     }
 
     @When("Sepetinde urunu artırabilmek icin {string} ya tiklar")
     public void sepetinde_urunu_artırabilmek_icin_ya_tiklar(String ikon) {
+        ReusableMethods.wait(1);
         switch (ikon) {
             case "+":
                 shoppingCartPage.urunArtirmaButton.click();
@@ -104,11 +108,14 @@ public class US_001_002 {
                 break;
             default:
                 Assert.fail("Tanımsız simge: " + ikon);
+                ReusableMethods.wait(1);
         }
+
 
     }
     @Then("Sepet başarıyla güncellendi yazisini goruntuler")
     public void sepet_başarıyla_güncellendi_yazisini_goruntuler() {
+        ReusableMethods.wait(1);
         shoppingCartPage.succesMesaji.isDisplayed();
         logger.info("Sepet başarıyla güncellendi yazisini goruntulendi.");
         Allure.step("Sepet başarıyla güncellendi yazisi goruntuleniyor.");
@@ -191,6 +198,7 @@ public class US_001_002 {
 
         Assert.assertTrue("Silme sonrası toplam tutar aynı kaldı veya artmış görünüyor",
                 toplamSonra < toplamOnce);
+        ReusableMethods.wait(1);
     }
 
 
