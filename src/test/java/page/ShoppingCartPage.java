@@ -21,7 +21,7 @@ public class ShoppingCartPage {
     @FindBy(xpath = "//div[@class=\"product-down\"]")
     public List<WebElement> tumUrunler;
 
-    @FindBy(xpath = "//*[@class='add-to-cart-button-text stock-info']")
+    @FindBy(xpath = "//span[@class='add-to-cart-button-text']")
     public WebElement sepeteEkleButon;
 
     @FindBy(xpath = "//img[@src='https://cdn.dsmcdn.com/web/production/new-gender-popup-female.png']")
@@ -32,10 +32,6 @@ public class ShoppingCartPage {
 
     @FindBy(xpath = "//button[@class='onboarding__default-renderer-primary-button']")
     public WebElement onboardingbutton;
-
-    ///html/body/div[63]
-    ////*[@id="envoy"]/div/div/div[2]/div/div[3]/div/div/button
-    //button @class="onboarding__default-renderer-primary-button">Anladım</button>
 
     @FindBy(xpath = "(//*[@class=\"link-text\"])[3]")
     public WebElement sepetimButton;
