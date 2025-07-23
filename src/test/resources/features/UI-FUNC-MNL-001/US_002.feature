@@ -1,4 +1,3 @@
-@t
 Feature:US_002 Bir ziyaretçi olarak, istemediğim bir ürünü sepetimden silebilmek istiyorum,
   böylece yalnızca satın almak istediğim ürünlerle alışverişe devam edebileyim.
 
