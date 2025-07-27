@@ -27,6 +27,7 @@ Feature: US_005 Bir kullanıcı olarak, çanta ürünlerini fiyata veya popüler
     When Kullanıcı sıralamadan“En Çok Satan” filtresi seçer.
     Then Kullanıcı, en cok satan filtre uygulandıktan sonra listelenen ürünlerin seçtigim filtrelere uygun olduğunu doğrular.
     And  Kullanıcı anasayfaya geri doner
+
   @t2
   Scenario: TC_003 Bir kullanıcı olarak, çanta ürünlerini fiyata göre sıralayarak ve
   fiyat aralığını da seçerek bütçeme uygun ürünleri daha hızlı bulmak istiyorum, böylece alışveriş sürecimi kolaylaştırabilirim.

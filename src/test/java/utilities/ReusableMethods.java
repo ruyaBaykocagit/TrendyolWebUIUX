@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -23,7 +25,7 @@ import java.util.Locale;
 
 public class ReusableMethods {
 
-
+    private static final Logger logger = LoggerFactory.getLogger(ReusableMethods.class);
     public static String getScreenshot(String name) throws IOException {
         // naming the screenshot with the current date to avoid duplication
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
@@ -118,10 +120,56 @@ public class ReusableMethods {
         }
     }
 
+//-------------------
+private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(10);
+
+    public static void click(WebElement locator) {
+        WebDriver driver = DriverManager.getDriver();
+        WebElement element = new WebDriverWait(driver, DEFAULT_TIMEOUT)
+                .until(ExpectedConditions.elementToBeClickable(locator));
+        element.click();
+    }
+
+    public static void sendKeysWithEnter(WebElement element, String text) {
+        WebDriver driver = DriverManager.getDriver();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement inputElement = wait.until(ExpectedConditions.visibilityOf(element));
+
+        inputElement.clear();
+
+        // 0.5 saniye bekle
+        ReusableMethods.wait(1);
+
+        inputElement.sendKeys(text + Keys.ENTER);
+
+        // Gönderim sonrası 0.5 saniye bekle
+        ReusableMethods.wait(1);
+    }
 
 
 
 
+    public static void assertElementVisible(WebElement element, String elementName) {
+        Allure.step(elementName + " elementinin görünürlüğü doğrulanıyor.");
+        logger.info("{} görünürlük kontrolü.", elementName);
+        Assert.assertTrue(elementName + " görünür değil!", element.isDisplayed());
+    }
+
+    // URL'nin beklenen ile başlayıp başlamadığını doğrula
+    public static void assertUrlStartsWith(String actualUrl, String expectedStart) {
+        Allure.step("URL doğrulaması: '" + actualUrl + "' adresi '" + expectedStart + "' ile başlıyor mu?");
+        logger.info("URL doğrulama: Beklenen başlangıç '{}', Gerçek URL '{}'", expectedStart, actualUrl);
+        Assert.assertTrue("URL beklenen ile başlamıyor! Gerçek URL: " + actualUrl,
+                actualUrl.startsWith(expectedStart));
+    }
+
+    // Uyarı mesajının görünürlüğünü doğrula
+    public static void assertWarningMessageVisible(WebElement warningElement, String expectedMessage) {
+        Allure.step("Uyarı mesajı '" + expectedMessage + "' görünür mü kontrol ediliyor.");
+        logger.info("Uyarı mesajı görünürlük kontrolü: '{}'", expectedMessage);
+        Assert.assertTrue("Uyarı mesajı görünür değil: " + expectedMessage, warningElement.isDisplayed());
+    }
 
 
 
