@@ -28,7 +28,7 @@ Feature: US_004 Bir kullanıcı olarak, çanta ürünleri arasında kategori,
     Then Kullanıcı, filtre uygulandıktan sonra listelenen ürünlerin yalnızca "Mango" markasına ait olduğunu doğrular.
     And  Kullanıcı anasayfaya geri doner
 
-  @t1
+
   Scenario: TC_003 Bir kullanıcı olarak, bütçeme uygun çantaları görebilmek için fiyat filtresini kullanmak istiyorum.
     Given   Kullanıcı URL ile siteye giris yapar
     And Kullanici cookiesleri kabul eder

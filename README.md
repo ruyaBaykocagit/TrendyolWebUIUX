@@ -25,7 +25,7 @@ The main goal is to validate search, filter, and product page flows in the Trend
 
 ## 🧪 Test Environment
 
-- **Platform**: Trendyol.com (Desktop Web Application)
+- **Platform**: Trendyol.com ( Web Application)
 - **Browsers**: Chrome (latest)
 - **Automation Type**: End-to-End UI Test Automation
 - **Test Framework**: Cucumber + JUnit
@@ -109,7 +109,24 @@ allure serve target/allure-results
 ```
 
 ---
+## 📚 Documentation
 
+We have also prepared **manual QA artifacts** to support our automation framework:
+
+- [BRD (Business Requirements Document)](docs/BRD.md)
+- [Test Plan](docs/TestPlan.md)
+- [Traceability Matrix](docs/TraceabilityMatrix.md)
+- [Manual Test Cases](docs/TestCases.md)
+
+> *Original detailed BRD is also available [here on Google Drive](https://drive.google.com/drive/folders/1m9RqClOGrc-ZkmLLGGE6_q5vr0uHjUze).*
+---
+## 🔮 Future Enhancements
+
+- Adding **CI/CD** pipeline with **GitHub Actions**
+- **Test coverage report (JaCoCo)** and **code quality checks (SonarCloud)**
+- **Parallel execution** and **cross-browser testing** (Selenium Grid / Docker)
+- Mock services or API validations
+---
 ## 👩‍💻 Team Members
 
 | Name               | Role         | LinkedIn |
