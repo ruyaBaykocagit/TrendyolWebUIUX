@@ -28,3 +28,4 @@ Feature:US_008 Bir kullanıcı olarak, istedigim urune tiklayip sepete eklemek i
     Then Kullanıcı istedigi herhangi bir urunu secer ve uzerine tıklar
     And Kullanici  sepete ekle butonunu gorur ve tiklar
     And Kullanici sectigi urunu basariyla sepete ekler
+
